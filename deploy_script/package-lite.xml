@@ -1,0 +1,37 @@
+<assembly>
+    <id>${project.version}-${current.time}-lite</id>
+    <baseDirectory>${deploy.servicename}-${project.version}-${current.time}</baseDirectory>
+    <!-- 最终打包成一个用于发布的zip文件 -->    
+    <formats>    
+        <format>zip</format>    
+    </formats>
+
+    <fileSets>    
+        <!-- 把项目相关的启动文件，打包进zip文件的根目录 -->            
+        <fileSet>    
+            <directory>${project.basedir}/deploy</directory>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include>install.sh</include>
+                <include>service/*</include>
+            </includes>
+        </fileSet>    
+
+        <fileSet>
+            <directory>${project.build.directory}/classes/</directory>
+            <outputDirectory>bin</outputDirectory>
+            <excludes>
+                <exclude>VERSION</exclude>
+            </excludes>
+        </fileSet>
+        
+        <fileSet>
+            <directory>${project.build.directory}/classes/</directory>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include>VERSION</include>
+            </includes>
+        </fileSet>
+        
+    </fileSets>    
+</assembly> 
